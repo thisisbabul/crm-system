@@ -1,20 +1,20 @@
 package com.sohanf.crmsystem.multitenant;
 
+import com.sohanf.crmsystem.common.Constant;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TenantSchemaResolver implements CurrentTenantIdentifierResolver{
 
-    private String defaultTenant = "public";
-
     @Override
     public String resolveCurrentTenantIdentifier() {
         String t =  TenantContext.getCurrentTenant();
-        if(t!=null){
+        if(t != null) {
             return t;
-        } else {
-            return defaultTenant;
+        }
+        else {
+            return Constant.DEFAULT_TENANT;
         }
     }
 

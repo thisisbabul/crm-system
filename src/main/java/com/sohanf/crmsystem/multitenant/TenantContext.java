@@ -1,7 +1,7 @@
 package com.sohanf.crmsystem.multitenant;
 
 public class TenantContext {
-    private static ThreadLocal<String> currentTenant = new InheritableThreadLocal<>();
+    private static final ThreadLocal<String> currentTenant = new InheritableThreadLocal<>();
 
     public static String getCurrentTenant() {
         return currentTenant.get();

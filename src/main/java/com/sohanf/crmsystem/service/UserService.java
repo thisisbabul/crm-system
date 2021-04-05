@@ -178,14 +178,14 @@ public class UserService {
 
     public String addStudent(Student student) {
         try {
-            Student existStudent = studentRepository.findById(student.getId()).get();
-            if (!existStudent.getId().equals(student.getId())) {
+            if (student.getId() == null) {
                 String encryptedPwd = passwordEncoder.encode(student.getPassword());
                 student.setRoles(Constant.ROLE_STUDENT);
                 student.setPassword(encryptedPwd);
                 studentRepository.save(student);
             }
             else {
+                Student existStudent = studentRepository.findById(student.getId()).get();
                 existStudent.setName(student.getName());
                 existStudent.setParentName(student.getParentName());
                 existStudent.setParentContact(student.getParentContact());
